@@ -8,7 +8,11 @@ class CreateUsersTable extends Migration
 {
     /**
      * Run the migrations.
-     *
+     * name - имя пользователя
+     * email - email пользователя
+     * password: пароль пользователя
+     * is_admin = 0 - пользователь, 1 - админ
+     * status = 0 - активен, 1 - бан
      * @return void
      */
     public function up()
@@ -16,8 +20,11 @@ class CreateUsersTable extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->string('email')->unique();
+            $table->string('email');
             $table->string('password');
+            $table->integer('is_admin')->default(0);
+            $table->integer('status')->default(0);
+
             $table->rememberToken();
             $table->timestamps();
         });
