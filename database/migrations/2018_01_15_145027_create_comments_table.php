@@ -12,6 +12,7 @@ class CreateCommentsTable extends Migration
      * slug - SEO ссылка
      * user_id - id пользователя комментария
      * post_id - id комментария
+     * status = 0 - не опубликован, 1 - не опубликован
      * @return void
      */
     public function up()
@@ -21,6 +22,7 @@ class CreateCommentsTable extends Migration
             $table->text('text');
             $table->integer('user_id');
             $table->integer('post_id');
+            $table->integer('status')->default(0);
             $table->timestamps();
         });
     }
